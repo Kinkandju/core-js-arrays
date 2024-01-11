@@ -83,8 +83,12 @@ function findElement(arr, value) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+
+/* the filter() method -> create a new array containing only the 
+elements for which 'true' is returned from the callback function */
+/* (el) => el === item - callback function */
+function findAllOccurrences(arr, item) {
+  return arr.filter((element) => element === item).length;
 }
 
 /**
