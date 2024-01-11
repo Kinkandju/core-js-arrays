@@ -527,9 +527,19 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+
+/* the map() method creates a new array by applying a 
+callback function to each element, and the fill() method 
+fills the array with the specified value */
+/* (_, i) => Array(n).fill(0).fill(1, i, i + 1) - callback function */
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (_, i) =>
+    Array(n)
+      .fill(0)
+      .fill(1, i, i + 1)
+  );
 }
+/* fill(value, start, end) */
 
 /**
  * Returns an array containing indices of odd elements in the input array.
