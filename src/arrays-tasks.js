@@ -432,8 +432,20 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method, which takes the callback function and the 
+initial value of the accumulator (in this case, an empty array []) */
+/* (acc, _, index) => { ... } - callback function */
+/* the callback function accepts three parameters: 
+acc - accumulator, _ - current element (not used in this task), 
+and i - index of the current element */
+function createChunks(arr, chunkSize) {
+  return arr.reduce((acc, _, i) => {
+    if (i % chunkSize === 0) {
+      acc.push(arr.slice(i, i + chunkSize));
+    }
+    return acc;
+  }, []);
 }
 
 /**
