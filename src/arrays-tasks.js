@@ -199,8 +199,12 @@ function isSameLength(arr) {
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-function isValueEqualsIndex(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the some() method checks whether any element of the array 
+satisfies the condition specified in the passed function */
+/* (element, i) => element === i - callback function */
+function isValueEqualsIndex(arr) {
+  return arr.some((element, i) => element === i);
 }
 
 /**
