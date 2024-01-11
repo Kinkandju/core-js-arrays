@@ -386,8 +386,13 @@ function flattenArray(nestedArray) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method of Array instances returns a new array 
+formed by applying a given callback function to each element 
+of the array, and then flattening the result by one level */
+/* childrenSelector - callback function */
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
