@@ -312,8 +312,12 @@ function toStringList(arr) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the Set object allows you to store unique values of any type */
+/* the Array.from() static method creates a new, shallow-copied
+ Array instance from an iterable or array-like object */
+function distinct(arr) {
+  return Array.from(new Set(arr));
 }
 
 /**
