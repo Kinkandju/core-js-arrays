@@ -408,8 +408,16 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method takes the callback function and 
+the initial value of the accumulator (in this case, 0) */
+/* (acc, [income, expense]) => { ... } - callback function */
+/* the callback function accepts two parameters: an acc - accumulator 
+and a pair of [income, expense] from the array */
+function calculateBalance(arr) {
+  return arr.reduce((acc, [income, expense]) => {
+    return acc + (income - expense);
+  }, 0);
 }
 
 /**
