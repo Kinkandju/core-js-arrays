@@ -573,8 +573,22 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+
+/* (num) => { ... } - callback function */
+/* 1) convert the current num element to a hexadecimal 
+representation string using num.toString(16) */
+/* 2) use the pad Start(6, '0') method to add zeros 
+to the left of the string up to six characters */
+/* 3) convert the string to uppercase using toUpperCase() */
+
+/* the padStart() method of String values pads this string 
+with another string (multiple times, if needed) until the 
+resulting string reaches the given length. The padding is 
+applied from the start of this string. */
+function getHexRGBValues(arr) {
+  return arr.map(
+    (num) => `#${num.toString(16).padStart(6, '0').toUpperCase()}`
+  );
 }
 
 /**
