@@ -361,8 +361,16 @@ function createNDimensionalArray(n, size) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method takes a callback function and the initial 
+value of the accumulator (in this case, an empty array []) */
+/* (acc, curr) => { ... } - callback function */
+/* the callback function accepts two parameters: 
+acc - accumulator and cur - current element from nestedArray */
+function flattenArray(nestedArray) {
+  return nestedArray.reduce((acc, curr) => {
+    return acc.concat(Array.isArray(curr) ? flattenArray(curr) : curr);
+  }, []);
 }
 
 /**
