@@ -126,8 +126,12 @@ function removeFalsyValues(arr) {
  *    getStringsLength([ '', 'a', 'bc', 'def', 'ghij' ]) => [ 0, 1, 2, 3, 4 ]
  *    getStringsLength([ 'angular', 'react', 'ember' ]) => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the map() method to create a new array, where each element will be 
+the result of applying the callback function to each element of the original array */
+/* (str) => str.length - callback function */
+function getStringsLength(arr) {
+  return arr.map((str) => str.length);
 }
 
 /**
