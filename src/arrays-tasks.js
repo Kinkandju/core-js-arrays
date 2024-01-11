@@ -255,8 +255,13 @@ function getHead(arr, n) {
  *    getTail([ 'a', 'b', 'c', 'd'], 3) => [ 'b', 'c', 'd' ]
  *    getTail([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getTail(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* the reverse() method reverses the order of the array elements in place.
+ The first element of the array becomes the last, and the last one becomes the first */
+/* the slice() method can create a new array containing
+ the selected fragment of the original array */
+function getTail(arr, n) {
+  return arr.reverse().slice(0, n).reverse();
 }
 
 /**
