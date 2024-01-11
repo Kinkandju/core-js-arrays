@@ -89,7 +89,7 @@ function findElement(arr, value) {
 
 /* the filter() method -> create a new array containing only the 
 elements for which 'true' is returned from the callback function */
-/* (el) => el === item - callback function */
+/* (element) => element === item - callback function */
 function findAllOccurrences(arr, item) {
   return arr.filter((element) => element === item).length;
 }
@@ -106,8 +106,14 @@ function findAllOccurrences(arr, item) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the filter() method -> create a new array containing only the 
+elements for which 'true' is returned from the callback function */
+/* Boolean() - callback function */
+/* the Boolean() method converts each element to its boolean value
+ and returns 'true' if the element is 'true' */
+function removeFalsyValues(arr) {
+  return arr.filter(Boolean);
 }
 
 /**
