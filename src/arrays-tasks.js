@@ -668,8 +668,17 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method of Array instances returns a new 
+array formed by applying a given callback function to each 
+element of the array, and then flattening the result by one level */
+/* (item, index) => { ... } - callback function */
+/* the fill() method fills all elements of the array 
+from the start to the end indexes with a single value */
+function propagateItemsByPositionIndex(arr) {
+  return arr.flatMap((item, index) => {
+    return new Array(index + 1).fill(item);
+  });
 }
 
 /**
