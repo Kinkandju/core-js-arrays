@@ -552,8 +552,15 @@ function getIdentityMatrix(n) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method first applies the function to each element, 
+and then converts the result into a flat structure and places it in a new array */
+/* (_, i) => { ... } - callback function */
+/* inside the callback function check the current element is odd: (numbers[i] % 2 ===1). 
+If the element is odd -> return an array containing only the index 
+of the current element [i]. Otherwise -> return an empty array [] */
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.flatMap((_, i) => (numbers[i] % 2 === 1 ? [i] : []));
 }
 
 /**
