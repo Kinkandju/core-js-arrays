@@ -627,8 +627,16 @@ function getMaxItems(arr, n) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+
+/* the filter() method of Array instances creates a shallow 
+copy of a portion of a given array, filtered down to just 
+the elements from the given array that pass the test implemented 
+by the provided function */
+/* the includes() method of Array instances determines 
+whether an array includes a certain value among its 
+entries, returning true or false as appropriate */
+function findCommonElements(arr1, arr2) {
+  return arr1.filter((item) => arr2.includes(item));
 }
 
 /**
