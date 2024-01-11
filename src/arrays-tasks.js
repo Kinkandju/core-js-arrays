@@ -21,7 +21,7 @@
  *    getIntervalArray(3, 3) => [ 3 ]
  */
 
-/* (_, i) => start + i) - callback function */
+/* (_, i) => start + i - callback function */
 function getIntervalArray(start, end) {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
@@ -64,8 +64,9 @@ function sumArrays(arr1, arr2) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+
+function findElement(arr, value) {
+  return arr.indexOf(value);
 }
 
 /**
