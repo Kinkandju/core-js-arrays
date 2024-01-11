@@ -333,8 +333,21 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+
+/* 1) checking the depth of the array n */
+/* 2) if n is 1 -> create an array of the specified length 
+size and fill it with zeros using the fill() method */
+/* 3) otherwise -> perform a recursive call to the 
+createNDimensionalArray() function to create nested arrays */
+
+/* the fill() method fills all elements of the array from 
+the start to the end indexes with a single value */
+function createNDimensionalArray(n, size) {
+  if (n === 1) {
+    return Array(size).fill(0);
+  }
+
+  return Array(size).fill(createNDimensionalArray(n - 1, size));
 }
 
 /**
