@@ -719,8 +719,29 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+
+/* 1) create an array containing all numeric 
+values in ascending order (from 'zero' to 'nine') */
+/* 2) use indexOf() method to get the numeric value of each number name */
+/* 3) use the sort() method to sort the names of the numbers 
+in ascending order of their numeric values */
+function sortDigitNamesByNumericOrder(arr) {
+  const numbers = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  return arr.sort((a, b) => {
+    return numbers.indexOf(a) - numbers.indexOf(b);
+  });
 }
 
 /**
