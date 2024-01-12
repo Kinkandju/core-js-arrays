@@ -650,8 +650,30 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+
+/* 1) check if the current element is smaller than the next element */
+/* 2) if the condition is met -> increase the current length of the subsequence by 1 */
+/* 3) if the condition is not met, then the current ascending sequence has ended, 
+and check if the current length of the subsequence is greater than the current 
+longest subsequence. If so -> update the value of longestSubsequenceLength */
+/* 4) return 1 to start a new increasing subsequence */
+function findLongestIncreasingSubsequence(nums) {
+  let longestSubsequenceLength = 0;
+
+  nums.reduce((currentSubsequenceLength, currentNum, i) => {
+    if (currentNum < nums[i + 1]) {
+      return currentSubsequenceLength + 1;
+    }
+
+    longestSubsequenceLength = Math.max(
+      currentSubsequenceLength,
+      longestSubsequenceLength
+    );
+
+    return 1;
+  }, 1);
+
+  return longestSubsequenceLength;
 }
 
 /**
