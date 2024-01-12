@@ -20,8 +20,10 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+
+/* (_, i) => start + i - callback function */
+function getIntervalArray(start, end) {
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
 /**
@@ -37,8 +39,17 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+
+/* maxLength - the maximum length of both arrays */
+/* (_, i) => { ... } - callback function -> elements from two arrays are summed up */
+function sumArrays(arr1, arr2) {
+  const maxLength = Math.max(arr1.length, arr2.length);
+
+  return Array.from({ length: maxLength }, (_, i) => {
+    const element1 = arr1[i] || 0;
+    const element2 = arr2[i] || 0;
+    return element1 + element2;
+  });
 }
 
 /**
@@ -53,8 +64,12 @@ function sumArrays(/* arr1, arr2 */) {
  *    findElement(['Array', 'Number', 'string'], 'Date') => -1
  *    findElement([0, 1, 2, 3, 4, 5], 5) => 5
  */
-function findElement(/* arr, value */) {
-  throw new Error('Not implemented');
+
+/* the indexOf() method -> returns the index of 
+the first occurrence of an element in the array. 
+If the element is not found, the method returns -1 */
+function findElement(arr, value) {
+  return arr.indexOf(value);
 }
 
 /**
@@ -71,8 +86,12 @@ function findElement(/* arr, value */) {
  *    findAllOccurrences([ null, undefined, null ], null) => 2
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+
+/* the filter() method -> create a new array containing only the 
+elements for which 'true' is returned from the callback function */
+/* (element) => element === item - callback function */
+function findAllOccurrences(arr, item) {
+  return arr.filter((element) => element === item).length;
 }
 
 /**
@@ -87,8 +106,14 @@ function findAllOccurrences(/* arr, item */) {
  *    removeFalsyValues([ 1, 2, 3, 4, 5, 'false' ]) => [ 1, 2, 3, 4, 5, 'false' ]
  *    removeFalsyValues([ false, 0, NaN, '', undefined ]) => [ ]
  */
-function removeFalsyValues(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the filter() method -> create a new array containing only the 
+elements for which 'true' is returned from the callback function */
+/* Boolean() - callback function */
+/* the Boolean() method converts each element to its boolean value
+ and returns 'true' if the element is 'true' */
+function removeFalsyValues(arr) {
+  return arr.filter(Boolean);
 }
 
 /**
@@ -101,8 +126,12 @@ function removeFalsyValues(/* arr */) {
  *    getStringsLength([ '', 'a', 'bc', 'def', 'ghij' ]) => [ 0, 1, 2, 3, 4 ]
  *    getStringsLength([ 'angular', 'react', 'ember' ]) => [ 7, 5, 5 ]
  */
-function getStringsLength(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the map() method to create a new array, where each element will be 
+the result of applying the callback function to each element of the original array */
+/* (str) => str.length - callback function */
+function getStringsLength(arr) {
+  return arr.map((str) => str.length);
 }
 
 /**
@@ -119,8 +148,20 @@ function getStringsLength(/* arr */) {
  *   getAverage([ 1, 10, 100, 1000 ])  => 277,75
  *   getAverage([ 2, 3, 3 ])  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method allows us to perform an operation on 
+the elements of the array with the accumulation of the result */
+/* the toFixed() method rounds the number to the specified number of decimal places */
+/* (total, num) => total + num - callback function */
+function getAverage(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
+
+  const sum = arr.reduce((total, num) => total + num, 0);
+  const average = sum / arr.length;
+
+  return Number(average.toFixed(2));
 }
 
 /**
@@ -133,8 +174,18 @@ function getAverage(/* arr */) {
  *    isSameLength(['orange', 'banana', 'cherry']) => true
  *    isSameLength(['cat', 'dog', 'elephant']) => false
  */
-function isSameLength(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the every() method checks whether all elements of the 
+array satisfy the condition specified in the passed function */
+/* (str) => str.length === length - callback function */
+function isSameLength(arr) {
+  if (arr.length === 0) {
+    return true;
+  }
+
+  const firstLineLength = arr[0].length;
+
+  return arr.every((str) => str.length === firstLineLength);
 }
 
 /**
@@ -148,8 +199,12 @@ function isSameLength(/* arr */) {
  *    isValueEqualsIndex([2, 1, 0, 4, 5]) => true
  *    isValueEqualsIndex([10, 20, 30, 40, 50]) => false
  */
-function isValueEqualsIndex(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the some() method checks whether any element of the array 
+satisfies the condition specified in the passed function */
+/* (element, i) => element === i - callback function */
+function isValueEqualsIndex(arr) {
+  return arr.some((element, i) => element === i);
 }
 
 /**
@@ -163,8 +218,12 @@ function isValueEqualsIndex(/* arr */) {
  *    insertItem([ 1, 3, 4, 5 ], 2, 1)  => [ 1, 2, 3, 4, 5 ]
  *    insertItem([ 1, 'b', 'c'], 'x', 0) => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  throw new Error('Not implemented');
+
+/* the splice() method modifies the original array 
+by inserting an element at the specified position */
+function insertItem(arr, item, index) {
+  arr.splice(index, 0, item);
+  return arr;
 }
 
 /**
@@ -178,8 +237,11 @@ function insertItem(/* arr, item, index */) {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* the slice() method can create a new array containing
+ the selected fragment of the original array */
+function getHead(arr, n) {
+  return arr.slice(0, n);
 }
 
 /**
@@ -193,8 +255,13 @@ function getHead(/* arr, n */) {
  *    getTail([ 'a', 'b', 'c', 'd'], 3) => [ 'b', 'c', 'd' ]
  *    getTail([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getTail(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* the reverse() method reverses the order of the array elements in place.
+ The first element of the array becomes the last, and the last one becomes the first */
+/* the slice() method can create a new array containing
+ the selected fragment of the original array */
+function getTail(arr, n) {
+  return arr.reverse().slice(0, n).reverse();
 }
 
 /**
@@ -209,8 +276,10 @@ function getTail(/* arr, n */) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the concat() method combines two arrays into a new array */
+function doubleArray(arr) {
+  return arr.concat(arr);
 }
 
 /**
@@ -224,8 +293,11 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the join() method takes a separator as a parameter and combines
+ all the elements of the array into a string using this separator */
+function toStringList(arr) {
+  return arr.join(',');
 }
 
 /**
@@ -240,8 +312,12 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the Set object allows you to store unique values of any type */
+/* the Array.from() static method creates a new, shallow-copied
+ Array instance from an iterable or array-like object */
+function distinct(arr) {
+  return Array.from(new Set(arr));
 }
 
 /**
@@ -257,8 +333,21 @@ function distinct(/* arr */) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+
+/* 1) checking the depth of the array n */
+/* 2) if n is 1 -> create an array of the specified length 
+size and fill it with zeros using the fill() method */
+/* 3) otherwise -> perform a recursive call to the 
+createNDimensionalArray() function to create nested arrays */
+
+/* the fill() method fills all elements of the array from 
+the start to the end indexes with a single value */
+function createNDimensionalArray(n, size) {
+  if (n === 1) {
+    return Array(size).fill(0);
+  }
+
+  return Array(size).fill(createNDimensionalArray(n - 1, size));
 }
 
 /**
@@ -272,8 +361,16 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method takes a callback function and the initial 
+value of the accumulator (in this case, an empty array []) */
+/* (acc, curr) => { ... } - callback function */
+/* the callback function accepts two parameters: 
+acc - accumulator and cur - current element from nestedArray */
+function flattenArray(nestedArray) {
+  return nestedArray.reduce((acc, curr) => {
+    return acc.concat(Array.isArray(curr) ? flattenArray(curr) : curr);
+  }, []);
 }
 
 /**
@@ -289,8 +386,13 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method of Array instances returns a new array 
+formed by applying a given callback function to each element 
+of the array, and then flattening the result by one level */
+/* childrenSelector - callback function */
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
@@ -306,8 +408,16 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method takes the callback function and 
+the initial value of the accumulator (in this case, 0) */
+/* (acc, [income, expense]) => { ... } - callback function */
+/* the callback function accepts two parameters: an acc - accumulator 
+and a pair of [income, expense] from the array */
+function calculateBalance(arr) {
+  return arr.reduce((acc, [income, expense]) => {
+    return acc + (income - expense);
+  }, 0);
 }
 
 /**
@@ -322,8 +432,20 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method, which takes the callback function and the 
+initial value of the accumulator (in this case, an empty array []) */
+/* (acc, _, index) => { ... } - callback function */
+/* the callback function accepts three parameters: 
+acc - accumulator, _ - current element (not used in this task), 
+and i - index of the current element */
+function createChunks(arr, chunkSize) {
+  return arr.reduce((acc, _, i) => {
+    if (i % chunkSize === 0) {
+      acc.push(arr.slice(i, i + chunkSize));
+    }
+    return acc;
+  }, []);
 }
 
 /**
@@ -338,8 +460,10 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+
+/* (_, i) => i * 2 + 1 - callback function */
+function generateOdds(len) {
+  return Array.from({ length: len }, (_, i) => i * 2 + 1);
 }
 
 /**
@@ -354,8 +478,14 @@ function generateOdds(/* len */) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+
+/* the reduce() method process each index of the indexes array. 
+The first 'result' parameter represents the result of the previous 
+iteration, and the second 'i' parameter represents the current index */
+function getElementByIndices(arr, indices) {
+  return indices.reduce((result, i) => {
+    return result !== undefined ? result[i] : undefined;
+  }, arr);
 }
 
 /**
@@ -370,8 +500,13 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the filter() method applies the callback function to each 
+element of the array and creates a new array containing only 
+those elements for which the callback function returns true */
+/* value => !value - callback function */
+function getFalsyValuesCount(arr) {
+  return arr.filter((value) => !value).length;
 }
 
 /**
@@ -392,9 +527,19 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+
+/* the map() method creates a new array by applying a 
+callback function to each element, and the fill() method 
+fills the array with the specified value */
+/* (_, i) => Array(n).fill(0).fill(1, i, i + 1) - callback function */
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (_, i) =>
+    Array(n)
+      .fill(0)
+      .fill(1, i, i + 1)
+  );
 }
+/* fill(value, start, end) */
 
 /**
  * Returns an array containing indices of odd elements in the input array.
@@ -407,8 +552,15 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method first applies the function to each element, 
+and then converts the result into a flat structure and places it in a new array */
+/* (_, i) => { ... } - callback function */
+/* inside the callback function check the current element is odd: (numbers[i] % 2 ===1). 
+If the element is odd -> return an array containing only the index 
+of the current element [i]. Otherwise -> return an empty array [] */
+function getIndicesOfOddNumbers(numbers) {
+  return numbers.flatMap((_, i) => (numbers[i] % 2 === 1 ? [i] : []));
 }
 
 /**
@@ -421,8 +573,22 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+
+/* (num) => { ... } - callback function */
+/* 1) convert the current num element to a hexadecimal 
+representation string using num.toString(16) */
+/* 2) use the pad Start(6, '0') method to add zeros 
+to the left of the string up to six characters */
+/* 3) convert the string to uppercase using toUpperCase() */
+
+/* the padStart() method of String values pads this string 
+with another string (multiple times, if needed) until the 
+resulting string reaches the given length. The padding is 
+applied from the start of this string. */
+function getHexRGBValues(arr) {
+  return arr.map(
+    (num) => `#${num.toString(16).padStart(6, '0').toUpperCase()}`
+  );
 }
 
 /**
@@ -439,8 +605,14 @@ function getHexRGBValues(/* arr */) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* the sort() method of Array instances sorts the elements of an array 
+in place and returns the reference to the same array, now sorted */
+/* after sorting, take the first n elements 
+from the sorted array using the slice() method */
+function getMaxItems(arr, n) {
+  arr.sort((a, b) => b - a);
+  return arr.slice(0, n);
 }
 
 /**
@@ -455,8 +627,16 @@ function getMaxItems(/* arr, n */) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+
+/* the filter() method of Array instances creates a shallow 
+copy of a portion of a given array, filtered down to just 
+the elements from the given array that pass the test implemented 
+by the provided function */
+/* the includes() method of Array instances determines 
+whether an array includes a certain value among its 
+entries, returning true or false as appropriate */
+function findCommonElements(arr1, arr2) {
+  return arr1.filter((item) => arr2.includes(item));
 }
 
 /**
@@ -470,8 +650,30 @@ function findCommonElements(/* arr1, arr2 */) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+
+/* 1) check if the current element is smaller than the next element */
+/* 2) if the condition is met -> increase the current length of the subsequence by 1 */
+/* 3) if the condition is not met, then the current ascending sequence has ended, 
+and check if the current length of the subsequence is greater than the current 
+longest subsequence. If so -> update the value of longestSubsequenceLength */
+/* 4) return 1 to start a new increasing subsequence */
+function findLongestIncreasingSubsequence(nums) {
+  let longestSubsequenceLength = 0;
+
+  nums.reduce((currentSubsequenceLength, currentNum, i) => {
+    if (currentNum < nums[i + 1]) {
+      return currentSubsequenceLength + 1;
+    }
+
+    longestSubsequenceLength = Math.max(
+      currentSubsequenceLength,
+      longestSubsequenceLength
+    );
+
+    return 1;
+  }, 1);
+
+  return longestSubsequenceLength;
 }
 
 /**
@@ -488,8 +690,17 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+
+/* the flatMap() method of Array instances returns a new 
+array formed by applying a given callback function to each 
+element of the array, and then flattening the result by one level */
+/* (item, index) => { ... } - callback function */
+/* the fill() method fills all elements of the array 
+from the start to the end indexes with a single value */
+function propagateItemsByPositionIndex(arr) {
+  return arr.flatMap((item, i) => {
+    return new Array(i + 1).fill(item);
+  });
 }
 
 /**
@@ -505,8 +716,16 @@ function propagateItemsByPositionIndex(/* arr */) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* check the value of n. If it is non-negative, 
+then -> shift the array to the right, and 
+if it is negative, then -> to the left */
+function shiftArray(arr, n) {
+  if (n >= 0) {
+    return arr.slice(arr.length - n).concat(arr.slice(0, arr.length - n));
+  }
+
+  return arr.slice(-n).concat(arr.slice(0, -n));
 }
 
 /**
@@ -522,8 +741,29 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+
+/* 1) create an array containing all numeric 
+values in ascending order (from 'zero' to 'nine') */
+/* 2) use indexOf() method to get the numeric value of each number name */
+/* 3) use the sort() method to sort the names of the numbers 
+in ascending order of their numeric values */
+function sortDigitNamesByNumericOrder(arr) {
+  const numbers = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+
+  return arr.sort((a, b) => {
+    return numbers.indexOf(a) - numbers.indexOf(b);
+  });
 }
 
 /**
@@ -545,8 +785,26 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+
+/* 1) calculate the central index of the middleIndex arr */
+/* 2) check -> an even number of values in the arr or an odd number */
+/* 3) if the arr is even, then swap the head and tail 
+in places, since their number is equal to each other */
+/* 4) if the arr is odd, then we change the head and 
+tail around the middleIndex (it remains in place) */
+function swapHeadAndTail(arr) {
+  const middleIndex = Math.floor(arr.length / 2);
+
+  if (arr.length % 2 === 0) {
+    const head = arr.slice(0, middleIndex);
+    const tail = arr.slice(middleIndex);
+    return tail.concat(head);
+  }
+
+  const head = arr.slice(0, middleIndex);
+  const middle = arr.slice(middleIndex, middleIndex + 1);
+  const tail = arr.slice(middleIndex + 1);
+  return tail.concat(middle, head);
 }
 
 module.exports = {
