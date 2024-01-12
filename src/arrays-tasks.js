@@ -763,8 +763,26 @@ function sortDigitNamesByNumericOrder(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+
+/* 1) calculate the central index of the middleIndex arr */
+/* 2) check -> an even number of values in the arr or an odd number */
+/* 3) if the arr is even, then swap the head and tail 
+in places, since their number is equal to each other */
+/* 4) if the arr is odd, then we change the head and 
+tail around the middleIndex (it remains in place) */
+function swapHeadAndTail(arr) {
+  const middleIndex = Math.floor(arr.length / 2);
+
+  if (arr.length % 2 === 0) {
+    const head = arr.slice(0, middleIndex);
+    const tail = arr.slice(middleIndex);
+    return tail.concat(head);
+  }
+
+  const head = arr.slice(0, middleIndex);
+  const middle = arr.slice(middleIndex, middleIndex + 1);
+  const tail = arr.slice(middleIndex + 1);
+  return tail.concat(middle, head);
 }
 
 module.exports = {
