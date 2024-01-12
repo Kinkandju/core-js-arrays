@@ -676,8 +676,8 @@ element of the array, and then flattening the result by one level */
 /* the fill() method fills all elements of the array 
 from the start to the end indexes with a single value */
 function propagateItemsByPositionIndex(arr) {
-  return arr.flatMap((item, index) => {
-    return new Array(index + 1).fill(item);
+  return arr.flatMap((item, i) => {
+    return new Array(i + 1).fill(item);
   });
 }
 
@@ -694,8 +694,16 @@ function propagateItemsByPositionIndex(arr) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+
+/* check the value of n. If it is non-negative, 
+then -> shift the array to the right, and 
+if it is negative, then -> to the left */
+function shiftArray(arr, n) {
+  if (n >= 0) {
+    return arr.slice(arr.length - n).concat(arr.slice(0, arr.length - n));
+  }
+
+  return arr.slice(-n).concat(arr.slice(0, -n));
 }
 
 /**
